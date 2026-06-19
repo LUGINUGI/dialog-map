@@ -155,7 +155,7 @@ export function PersonPanel({
 
           {person.evidence.length ? (
             <section className="panel-section">
-              <h3 className="section-label">Evidence notes</h3>
+              <h3 className="section-label">Documented record</h3>
               {person.evidence.map((item) => (
                 <article className="evidence-card" key={`${item.label}-${item.detail}`}>
                   <div className="evidence-top">

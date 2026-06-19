@@ -694,7 +694,7 @@ export const people: Person[] = [
     centrality: 0.5,
     portrait: "/portraits/peter-attia.jpg",
     summary:
-      "Physician, author, and longevity-media figure whose elite professional network overlaps with technology and finance.",
+      "Physician, author, and longevity-media figure. Released records show a sustained, friendly post-conviction relationship with Jeffrey Epstein that was substantially closer than a passing professional contact.",
     politics:
       "No stable partisan identity established here. Public work is primarily medical and entrepreneurial; any political characterization should remain narrow.",
     tendency: 50,
@@ -703,10 +703,51 @@ export const people: Person[] = [
     evidence: [
       {
         status: "confirmed",
-        label: "Repeated post-conviction association",
+        label: "Large post-conviction document trail",
         detail:
-          "Attia acknowledged extensive friendly correspondence and roughly seven or eight meetings at Epstein's Manhattan residence involving research, introductions, health questions, social plans, and crude banter.",
-        sourceUrl: "https://www.justice.gov/epstein",
+          "The 2026 release contains more than 1,700 references to Attia and years of emails from 2015–2018. Attia acknowledged roughly seven or eight meetings at Epstein's Manhattan residence.",
+        sourceUrl:
+          "https://www.theatlantic.com/health/2026/02/peter-attia-epstein-files-wellness/685861/",
+      },
+      {
+        status: "confirmed",
+        label: "He called it a friendship",
+        detail:
+          "In a released email, Attia described becoming Epstein's friend and said Epstein's life was so “outrageous” that he could not tell anyone about it. The exchange occurred years after Epstein's 2008 conviction.",
+        sourceUrl:
+          "https://www.justice.gov/epstein/files/DataSet%2011/EFTA02496403.pdf",
+      },
+      {
+        status: "confirmed",
+        label: "Sexual banter and “JE withdrawal”",
+        detail:
+          "The emails include Attia saying he went into “JE withdrawal” when he did not see Epstein, joking that female anatomy was “low carb,” and discussing extending Epstein's life for more sex.",
+        sourceUrl:
+          "https://www.theatlantic.com/health/2026/02/peter-attia-epstein-files-wellness/685861/",
+      },
+      {
+        status: "reported",
+        label: "Meeting request during son's medical crisis",
+        detail:
+          "Attia's own book says his infant son suffered cardiac arrest on July 11, 2017 while Attia stayed in New York. Released emails show Attia arranging a July 13 meeting with Epstein and offering to come earlier. The correspondence does not prove the meeting occurred.",
+        sourceUrl:
+          "https://nypost.com/2026/02/02/us-news/cbs-news-star-hire-peter-attia-made-plans-to-meet-with-epstein-as-his-infant-son-fought-for-his-life-in-the-hospital/",
+      },
+      {
+        status: "confirmed",
+        label: "Access, referrals, and medical help",
+        detail:
+          "The correspondence reportedly includes patient referrals, health testing and advice, hiring discussions, introductions, and Attia staying in an empty Upper East Side apartment owned by Epstein.",
+        sourceUrl:
+          "https://www.theatlantic.com/health/2026/02/peter-attia-epstein-files-wellness/685861/",
+      },
+      {
+        status: "confirmed",
+        label: "Professional fallout",
+        detail:
+          "After the emails became public, Attia left CBS News and stepped down from corporate advisory roles. CBS had already pulled a planned rerun of his 60 Minutes segment.",
+        sourceUrl:
+          "https://apnews.com/article/428aacc5f6ba7dc3f441047e37d351c6",
       },
       {
         status: "confirmed",
@@ -722,7 +763,32 @@ export const people: Person[] = [
           "The reviewed sources do not establish Attia's participation in Epstein's abuse or trafficking.",
       },
     ],
-    quotes: [],
+    quotes: [
+      {
+        text: "I go into JE withdrawal when I don't see him.",
+        about: "Jeffrey Epstein",
+        context: "Email describing his desire to see Epstein again",
+        date: "2016",
+        sourceUrl:
+          "https://www.theatlantic.com/health/2026/02/peter-attia-epstein-files-wellness/685861/",
+      },
+      {
+        text: "The life you lead is so outrageous, and yet I can't tell a soul.",
+        about: "Jeffrey Epstein",
+        context: "Email describing the problem with their friendship",
+        date: "2015",
+        sourceUrl:
+          "https://www.justice.gov/epstein/files/DataSet%2011/EFTA02496403.pdf",
+      },
+      {
+        text: "Pussy is, indeed, low carb.",
+        about: "Jeffrey Epstein",
+        context: "Sexual joke in a released email",
+        date: "2016",
+        sourceUrl:
+          "https://www.justice.gov/epstein/files/DataSet%2011/EFTA02471177.pdf",
+      },
+    ],
     sources: [
       {
         title: "Peter Attia statement",
@@ -731,9 +797,22 @@ export const people: Person[] = [
         url: "https://x.com/PeterAttiaMD/status/2018350892395774116",
       },
       {
-        title: "Epstein records portal",
+        title: "The longevity influencer who went into 'withdrawal' without Jeffrey Epstein",
+        publisher: "The Atlantic",
+        date: "2026",
+        url: "https://www.theatlantic.com/health/2026/02/peter-attia-epstein-files-wellness/685861/",
+      },
+      {
+        title: "Released Attia–Epstein email chain (EFTA02496403)",
         publisher: "U.S. Department of Justice",
-        url: "https://www.justice.gov/epstein",
+        date: "2026",
+        url: "https://www.justice.gov/epstein/files/DataSet%2011/EFTA02496403.pdf",
+      },
+      {
+        title: "Meeting request during son's hospitalization",
+        publisher: "New York Post",
+        date: "2026",
+        url: "https://nypost.com/2026/02/02/us-news/cbs-news-star-hire-peter-attia-made-plans-to-meet-with-epstein-as-his-infant-son-fought-for-his-life-in-the-hospital/",
       },
       {
         title: "Peter Attia exits CBS after Epstein disclosures",
@@ -1005,10 +1084,12 @@ export const relations: Relation[] = [
     source: "peter-attia",
     target: "jeffrey-epstein",
     kind: "epstein",
-    status: "reported",
-    label: "Reported correspondence",
+    status: "confirmed",
+    label: "Sustained post-conviction friendship",
     detail:
-      "Public reporting has described correspondence and contact. This does not itself imply knowledge of or participation in Epstein’s crimes.",
+      "Years of released emails show meetings, medical advice, referrals, access to an Epstein-owned apartment, sexual banter, and Attia saying he experienced “JE withdrawal.” This establishes closeness, not participation in Epstein’s crimes.",
+    sourceUrl:
+      "https://www.theatlantic.com/health/2026/02/peter-attia-epstein-files-wellness/685861/",
   },
   {
     id: "musk-epstein",
@@ -1133,21 +1214,21 @@ export const relations: Relation[] = [
 ];
 
 export const relationColors: Record<RelationKind, string> = {
-  business: "#9fb5b0",
-  political: "#ff9d77",
-  social: "#c9a7ff",
-  dialog: "#d8ff65",
-  critical: "#ff766f",
-  epstein: "#ffc76a",
-  media: "#8fb8ff",
+  business: "#949aa3",
+  political: "#949aa3",
+  social: "#949aa3",
+  dialog: "#949aa3",
+  critical: "#747a83",
+  epstein: "#747a83",
+  media: "#949aa3",
 };
 
 export const statusColors: Record<EvidenceStatus, string> = {
-  confirmed: "#86e3a6",
-  reported: "#ffc76a",
-  disputed: "#ff766f",
-  speculative: "#c9a7ff",
-  "none-found": "#747975",
+  confirmed: "#34383f",
+  reported: "#737983",
+  disputed: "#555a63",
+  speculative: "#9297a0",
+  "none-found": "#a5a9b0",
 };
 
 export const mismatches: Mismatch[] = [

@@ -903,6 +903,99 @@ kbd {
   }
 }
 
+/* Monochrome map language: relationship type is expressed by line pattern,
+   not a color spectrum. */
+:root {
+  --acid: #2d3035;
+  --blue: #2d3035;
+  --amber: #686d75;
+  --red: #4d5158;
+}
+
+.app-shell {
+  background:
+    radial-gradient(circle at 50% 38%, rgba(255, 255, 255, 0.99), transparent 38%),
+    radial-gradient(circle at 10% 0%, rgba(222, 225, 230, 0.55), transparent 34%),
+    linear-gradient(180deg, #fafafa, #eff0f2);
+}
+
+.brand-mark,
+.icon-button:hover,
+.filter-pill:hover,
+.filter-pill.active,
+.person-node.selected::after {
+  border-color: rgba(34, 38, 44, 0.2);
+  color: #25282d;
+}
+
+.brand-mark {
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.84),
+    0 8px 22px rgba(35, 39, 46, 0.09);
+}
+
+.search-trigger:hover {
+  border-color: rgba(34, 38, 44, 0.2);
+}
+
+.icon-button:hover,
+.filter-pill:hover,
+.filter-pill.active {
+  background: rgba(239, 240, 242, 0.9);
+}
+
+.person-node {
+  will-change: auto;
+}
+
+.person-node.selected::after {
+  box-shadow: 0 0 0 7px rgba(42, 46, 52, 0.07);
+}
+
+.portrait img {
+  filter: grayscale(0.18) contrast(1.04);
+}
+
+.person-node:hover .portrait img,
+.person-node.selected .portrait img {
+  filter: grayscale(0.05) contrast(1.04);
+}
+
+.edge-line {
+  filter: none;
+}
+
+.legend-dot {
+  width: 13px;
+  height: 1px;
+  border-radius: 0;
+  background: #858a92;
+  box-shadow: none;
+}
+
+.eyebrow,
+.source-link,
+.story-kicker,
+.editorial-take > span,
+.scandal-brief span,
+.directory-update > span,
+.directory-update a,
+.newly-list span,
+.directory-person:not(:disabled) em,
+.mismatch-card footer a {
+  color: #4d5158;
+}
+
+.newly-heading {
+  background: #3b3f45;
+  box-shadow: 0 18px 42px rgba(40, 44, 50, 0.16);
+}
+
+.mismatch-take,
+.directory-person:not(:disabled):hover {
+  background: rgba(35, 39, 45, 0.045);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
