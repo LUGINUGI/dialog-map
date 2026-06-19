@@ -17,12 +17,12 @@ const LiquidSurface = dynamic(
           onError={() => undefined}
         >
           <GlassContainer
-            blur={28}
-            displacementFactor={0.45}
-            opacity={0.28}
+            blur={34}
+            displacementFactor={0.3}
+            opacity={0.16}
             spacing={42}
-            specularOpacity={0.28}
-            tint={{ r: 0.58, g: 0.72, b: 0.5, a: 0.12 }}
+            specularOpacity={0.38}
+            tint={{ r: 0.72, g: 0.82, b: 1, a: 0.1 }}
           >
             <ZStack>
               <Frame width={480} height={260}>

@@ -1,8 +1,11 @@
 "use client";
 
 import {
+  ArrowUpRight,
   Crosshair,
+  GitCompareArrows,
   Info,
+  ListFilter,
   Minus,
   Network,
   Plus,
@@ -19,6 +22,9 @@ import {
 } from "react";
 import {
   people,
+  allegedDirectory,
+  mismatches,
+  newlySurfaced,
   relations,
   relationColors,
   type Person,
@@ -41,6 +47,8 @@ type View = {
   y: number;
   scale: number;
 };
+
+type ExplorerMode = "map" | "mismatches" | "directory";
 
 const relationKinds: RelationKind[] = [
   "dialog",
@@ -105,6 +113,8 @@ export function NetworkExplorer() {
     () => new Set(relationKinds),
   );
   const [showFilters, setShowFilters] = useState(false);
+  const [mode, setMode] = useState<ExplorerMode>("map");
+  const [directoryQuery, setDirectoryQuery] = useState("");
 
   const relatedIds = useMemo(() => {
     if (!selected) return new Set<string>();
@@ -275,7 +285,7 @@ export function NetworkExplorer() {
           </span>
           <span className="brand-copy">
             <strong>The Dialog Map</strong>
-            <span>15-person research prototype · updated Jun 2026</span>
+            <span>Power, proximity & public record</span>
           </span>
         </div>
 
@@ -309,6 +319,35 @@ export function NetworkExplorer() {
           </a>
         </div>
       </header>
+
+      <nav className="mode-switcher glass" aria-label="Explorer views">
+        <button
+          type="button"
+          className={mode === "map" ? "active" : ""}
+          onClick={() => setMode("map")}
+        >
+          <Network size={13} />
+          Map
+        </button>
+        <button
+          type="button"
+          className={mode === "mismatches" ? "active" : ""}
+          onClick={() => setMode("mismatches")}
+        >
+          <GitCompareArrows size={13} />
+          Mismatches
+          <span>{mismatches.length}</span>
+        </button>
+        <button
+          type="button"
+          className={mode === "directory" ? "active" : ""}
+          onClick={() => setMode("directory")}
+        >
+          <ListFilter size={13} />
+          Directory
+          <span>{allegedDirectory.length}</span>
+        </button>
+      </nav>
 
       {showFilters ? (
         <motion.div
@@ -349,7 +388,9 @@ export function NetworkExplorer() {
 
       <div
         ref={stageRef}
-        className={`map-stage ${dragging ? "dragging" : ""}`}
+        className={`map-stage ${dragging ? "dragging" : ""} ${
+          mode !== "map" ? "hidden-stage" : ""
+        }`}
         onPointerDown={(event) => {
           if ((event.target as HTMLElement).closest("button")) return;
           event.currentTarget.setPointerCapture(event.pointerId);
@@ -482,7 +523,224 @@ export function NetworkExplorer() {
         </div>
       </div>
 
-      <div className="map-legend glass">
+      {mode === "mismatches" ? (
+        <section className="story-view">
+          <header className="story-hero">
+            <span className="story-kicker">Public conflict · private proximity</span>
+            <h1>The room is more interesting than a single ideology.</h1>
+            <p>
+              People can be real rivals and still preserve access to the same
+              private networks. These cards separate the visible feud from the
+              quieter overlap underneath it.
+            </p>
+          </header>
+          <aside className="editorial-take glass">
+            <span>My read</span>
+            <div>
+              <h2>A private switchboard, not a single command center.</h2>
+              <p>
+                The evidence supports a curated social infrastructure that
+                maps status, ideology, relationships, and usefulness. It does
+                not support treating every listed person as part of one
+                coordinated political conspiracy.
+              </p>
+            </div>
+            <div>
+              <h2>The secrecy changes the power of ordinary networking.</h2>
+              <p>
+                Off-the-record access lets rivals exchange information,
+                introductions, and legitimacy without the reputational cost of
+                being seen together. That is consequential even when no secret
+                agreement exists.
+              </p>
+            </div>
+            <div>
+              <h2>The ranking system is the sharpest clue.</h2>
+              <p>
+                If reporting on internal grading is accurate, Dialog is not
+                merely a salon. It is an active model of elite social capital:
+                who matters, who knows whom, and who is worth placing in a
+                room.
+              </p>
+            </div>
+          </aside>
+          <section className="scandal-brief">
+            <article>
+              <span>2006</span>
+              <strong>Founded by Peter Thiel and Auren Hoffman</strong>
+              <p>
+                Built as an invitation-only, bipartisan, off-the-record forum
+                for powerful people across technology, politics, finance,
+                academia, media, and culture.
+              </p>
+            </article>
+            <article>
+              <span>Internal system</span>
+              <strong>Money, fame, relationships, and “value-add”</strong>
+              <p>
+                WIRED reports that leaked files grade participants, track
+                political leanings and relationships, influence seating and
+                introductions, and help decide who pays or returns.
+              </p>
+            </article>
+            <article>
+              <span>2025</span>
+              <strong>A permanent campus near Washington</strong>
+              <p>
+                Reporting says Dialog purchased or pursued land in Northern
+                Virginia for a permanent hub near the institutions many
+                participants influence.
+              </p>
+            </article>
+            <article>
+              <span>2026</span>
+              <strong>222 registrants for an Ireland retreat</strong>
+              <p>
+                A newer list reportedly distinguishes active members and
+                guests—evidence that the supplied 113-name directory is only a
+                partial, mixed-status view.
+              </p>
+            </article>
+          </section>
+          <div className="mismatch-grid">
+            {mismatches.map((item, index) => (
+              <motion.article
+                className="mismatch-card glass"
+                key={item.id}
+                initial={{ opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.055 }}
+              >
+                <div className="mismatch-number">
+                  {String(index + 1).padStart(2, "0")}
+                </div>
+                <h2>{item.title}</h2>
+                <div className="mismatch-columns">
+                  <div>
+                    <span>In public</span>
+                    <p>{item.publicStory}</p>
+                  </div>
+                  <div>
+                    <span>Underneath</span>
+                    <p>{item.privateOverlap}</p>
+                  </div>
+                </div>
+                <p className="mismatch-take">{item.interpretation}</p>
+                <footer>
+                  <span className={`evidence-word ${item.status}`}>
+                    {item.status}
+                  </span>
+                  <div>
+                    {item.sources.map((source) => (
+                      <a
+                        href={source.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        key={source.url}
+                        aria-label={`Open ${source.title}`}
+                      >
+                        {source.publisher}
+                        <ArrowUpRight size={10} />
+                      </a>
+                    ))}
+                  </div>
+                </footer>
+              </motion.article>
+            ))}
+          </div>
+        </section>
+      ) : null}
+
+      {mode === "directory" ? (
+        <section className="story-view directory-view">
+          <header className="story-hero directory-hero">
+            <div>
+              <span className="story-kicker">Alleged exposed directory</span>
+              <h1>{allegedDirectory.length} names in the supplied record.</h1>
+              <p>
+                A directory entry may represent a member, former attendee,
+                speaker, guest, or another person tracked by Dialog. It is not
+                proof of agreement, friendship, or wrongdoing.
+              </p>
+            </div>
+            <label className="directory-search">
+              <Search size={15} />
+              <input
+                value={directoryQuery}
+                onChange={(event) => setDirectoryQuery(event.target.value)}
+                placeholder="Filter the directory"
+              />
+            </label>
+          </header>
+          <div className="directory-update glass">
+            <span>New reporting</span>
+            <p>
+              A separate 2026 retreat list reportedly contains{" "}
+              <strong>222 registrants</strong>, with attendee types including
+              “active member” and “guest.” The 113 entries below are the
+              supplied leaked directory—not a complete current membership
+              roll.
+            </p>
+            <a
+              href="https://www.wired.com/story/leak-exposes-members-of-peter-thiels-secretive-dialog-society/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Read the reporting <ArrowUpRight size={11} />
+            </a>
+          </div>
+          <section className="newly-surfaced">
+            <div className="newly-heading">
+              <span>Outside the original 113</span>
+              <strong>{newlySurfaced.length} publicly surfaced names</strong>
+              <p>
+                These come from reporting on current registration and dossier
+                data. The full 222-person list has not been published.
+              </p>
+            </div>
+            <div className="newly-list">
+              {newlySurfaced.map((entry) => (
+                <article key={entry.name}>
+                  <span>{entry.status}</span>
+                  <strong>{entry.name}</strong>
+                  <p>{entry.note}</p>
+                </article>
+              ))}
+            </div>
+          </section>
+          <div className="directory-grid">
+            {allegedDirectory
+              .filter((name) =>
+                name.toLowerCase().includes(directoryQuery.toLowerCase()),
+              )
+              .map((name, index) => {
+                const profiled = people.find((person) => person.name === name);
+                return (
+                  <button
+                    type="button"
+                    className="directory-person"
+                    key={name}
+                    onClick={() => {
+                      if (!profiled) return;
+                      setMode("map");
+                      selectPerson(profiled);
+                    }}
+                    disabled={!profiled}
+                  >
+                    <span>{String(index + 1).padStart(3, "0")}</span>
+                    <strong>{name}</strong>
+                    <em>{profiled ? "profiled" : "research queued"}</em>
+                  </button>
+                );
+              })}
+          </div>
+        </section>
+      ) : null}
+
+      <div
+        className="map-legend glass"
+        style={{ display: mode === "map" ? undefined : "none" }}
+      >
         {relationKinds.map((kind) => (
           <span className="legend-item" key={kind}>
             <span
@@ -496,9 +754,14 @@ export function NetworkExplorer() {
         ))}
       </div>
 
-      <span className="mobile-hint">drag · pinch/scroll · tap a face</span>
+      {mode === "map" ? (
+        <span className="mobile-hint">drag · pinch/scroll · tap a face</span>
+      ) : null}
 
-      <div className="zoom-controls">
+      <div
+        className="zoom-controls"
+        style={{ display: mode === "map" ? undefined : "none" }}
+      >
         <button
           className="icon-button glass"
           type="button"

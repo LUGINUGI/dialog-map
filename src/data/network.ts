@@ -65,6 +65,17 @@ export type Relation = {
   sourceUrl?: string;
 };
 
+export type Mismatch = {
+  id: string;
+  people: string[];
+  title: string;
+  publicStory: string;
+  privateOverlap: string;
+  interpretation: string;
+  status: EvidenceStatus;
+  sources: Source[];
+};
+
 export const people: Person[] = [
   {
     id: "peter-thiel",
@@ -1138,3 +1149,372 @@ export const statusColors: Record<EvidenceStatus, string> = {
   speculative: "#c9a7ff",
   "none-found": "#747975",
 };
+
+export const mismatches: Mismatch[] = [
+  {
+    id: "musk-reid",
+    people: ["elon-musk", "reid-hoffman"],
+    title: "Public enemies, durable access",
+    publicStory:
+      "Musk and Hoffman have publicly attacked one another over Trump, OpenAI, and each other's Epstein contacts.",
+    privateOverlap:
+      "They share the PayPal alumni network, appeared in Dialog records, participated in early OpenAI circles, and attended overlapping elite technology events.",
+    interpretation:
+      "The feud appears real. The more interesting point is that elite conflict does not necessarily revoke elite access.",
+    status: "confirmed",
+    sources: [
+      {
+        title: "Dialog roster investigation",
+        publisher: "WIRED",
+        url: "https://www.wired.com/story/leak-exposes-members-of-peter-thiels-secretive-dialog-society/",
+      },
+      {
+        title: "Musk and Hoffman reignite Epstein feud",
+        publisher: "The Wall Street Journal",
+        url: "https://www.wsj.com/business/epstein-island-emails-reignite-feud-between-elon-musk-and-reid-hoffman-a48703ff",
+      },
+    ],
+  },
+  {
+    id: "thiel-reid",
+    people: ["peter-thiel", "reid-hoffman"],
+    title: "Old allies, opposite political machines",
+    publicStory:
+      "Thiel became a central financier of the populist right while Hoffman became a major Democratic and anti-Trump donor.",
+    privateOverlap:
+      "Their relationship stretches from Stanford and PayPal through LinkedIn financing, Silicon Valley institutions, and Dialog records.",
+    interpretation:
+      "Political polarization can coexist with personal familiarity and shared institutional terrain.",
+    status: "confirmed",
+    sources: [
+      {
+        title: "Thiel and Hoffman's political divergence",
+        publisher: "The Atlantic",
+        url: "https://www.theatlantic.com/politics/archive/2023/11/peter-thiel-2024-election-politics-investing-life-views/675946/",
+      },
+    ],
+  },
+  {
+    id: "musk-harris",
+    people: ["elon-musk", "sam-harris"],
+    title: "A friendship became content",
+    publicStory:
+      "Harris now accuses Musk of spreading misinformation and conspiracy theories; Musk responded with a personal insult.",
+    privateOverlap:
+      "Harris describes more than a decade of friendship, private social contact, and assistance with Musk's security before their rupture.",
+    interpretation:
+      "This is not hidden collusion. It demonstrates how quickly private trust can become public antagonism without erasing the history between them.",
+    status: "confirmed",
+    sources: [
+      {
+        title: "The Trouble With Elon",
+        publisher: "Sam Harris",
+        url: "https://samharris.substack.com/p/the-trouble-with-elon",
+      },
+    ],
+  },
+  {
+    id: "harris-klein",
+    people: ["sam-harris", "ezra-klein"],
+    title: "Intellectual adversaries in the same directory",
+    publicStory:
+      "Their 2018 debate over race, IQ, identity, and journalistic responsibility became openly hostile.",
+    privateOverlap:
+      "Both appear in the exposed Dialog directory, a forum advertised as ideologically diverse and off the record.",
+    interpretation:
+      "Dialog's value may be precisely that it retains people whose public brands depend on opposing one another.",
+    status: "reported",
+    sources: [
+      {
+        title: "Harris–Klein debate transcript",
+        publisher: "Vox",
+        url: "https://www.vox.com/2018/4/9/17210248/sam-harris-ezra-klein-charles-murray-transcript-podcast",
+      },
+      {
+        title: "Dialog roster investigation",
+        publisher: "WIRED",
+        url: "https://www.wired.com/story/leak-exposes-members-of-peter-thiels-secretive-dialog-society/",
+      },
+    ],
+  },
+  {
+    id: "bipartisan-room",
+    people: ["leonard-leo", "ezra-klein", "jared-kushner", "reid-hoffman"],
+    title: "The coalition is access, not ideology",
+    publicStory:
+      "The directory spans conservative legal infrastructure, Democratic megadonors, Trump family power, journalists, and government officials.",
+    privateOverlap:
+      "Dialog explicitly describes itself as bipartisan and off the record, while leaked material suggests it ranks and maps participants.",
+    interpretation:
+      "The strongest supported theory is not a single political program. It is private social infrastructure for people with unusually high institutional leverage.",
+    status: "reported",
+    sources: [
+      {
+        title: "How Dialog secretly ranks its members",
+        publisher: "WIRED",
+        url: "https://www.wired.com/story/how-peter-thiels-private-dialog-club-secretly-ranks-its-members/",
+      },
+    ],
+  },
+  {
+    id: "himes-lonsdale",
+    people: ["jim-himes", "joe-lonsdale"],
+    title: "The overseer and the contractor",
+    publicStory:
+      "Jim Himes serves on congressional intelligence oversight while Palantir operates deeply inside intelligence, defense, policing, and immigration systems.",
+    privateOverlap:
+      "Himes confirmed attending one Dialog conference around 2016; Palantir co-founder Joe Lonsdale appears in historical Dialog material.",
+    interpretation:
+      "There is no evidence of improper discussion. The transparency concern is that overseers and powerful contractors share off-the-record social space unavailable to ordinary stakeholders.",
+    status: "reported",
+    sources: [
+      {
+        title: "Jim Himes confirms one Dialog conference",
+        publisher: "CT Insider",
+        url: "https://www.ctinsider.com/news/article/jim-himes-dialog-leaked-membership-list-thiel-22309787.php",
+      },
+    ],
+  },
+  {
+    id: "status-paradox",
+    people: ["auren-hoffman", "peter-thiel"],
+    title: "A room that bans status signaling—and scores status",
+    publicStory:
+      "Moderator guidance reportedly asks participants to avoid status signaling and keep contributions concise and nonobvious.",
+    privateOverlap:
+      "Leaked systems allegedly grade wealth, fame, usefulness, political leanings, and relationships, affecting seating, introductions, pricing, and future invitations.",
+    interpretation:
+      "This is the strongest institutional contradiction in the leak: anti-status rhetoric wrapped around explicit quantification of elite value.",
+    status: "reported",
+    sources: [
+      {
+        title: "How Dialog secretly ranks its members",
+        publisher: "WIRED",
+        url: "https://www.wired.com/story/how-peter-thiels-private-dialog-club-secretly-ranks-its-members/",
+      },
+    ],
+  },
+  {
+    id: "bush-thiel",
+    people: ["sophia-bush", "peter-thiel"],
+    title: "A guest who says she would avoid the founder",
+    publicStory:
+      "Sophia Bush said her values sharply oppose Thiel's and that she could not be paid to share a room with him.",
+    privateOverlap:
+      "She confirmed attending Dialog as a guest/speaker to discuss AI-generated sexual abuse and said Thiel was absent and not discussed.",
+    interpretation:
+      "“Peter Thiel's club” is incomplete shorthand. Dialog can recruit countervoices whose participation is issue-specific rather than ideological allegiance.",
+    status: "confirmed",
+    sources: [
+      {
+        title: "Sophia Bush explains Dialog attendance",
+        publisher: "Entertainment Weekly",
+        url: "https://ew.com/sophia-bush-defends-attending-peter-thiel-linked-secret-society-event-12003015",
+      },
+    ],
+  },
+];
+
+export const allegedDirectory = [
+  "Immaad Akhund",
+  "Turki Al Faisal Al Saud",
+  "Reema Al-Saud",
+  "John Arnold",
+  "Susan Athey",
+  "Peter Attia",
+  "Scott Belsky",
+  "Nicolas Berggruen",
+  "Scott Bessent",
+  "Preet Bharara",
+  "Elizabeth Blackburn",
+  "Sarah Bond",
+  "Cory Booker",
+  "Rachel Brand",
+  "Scooter Braun",
+  "Pete Briger",
+  "Greg Brockman",
+  "Manuel Bronstein",
+  "Peter Brown",
+  "Thasunda Brown Duckett",
+  "Sophia Bush",
+  "Mike Cannon-Brookes",
+  "Cesar Carvalho",
+  "Wences Casares",
+  "Julian Castro",
+  "Bob Cialdini",
+  "Matt Clifford",
+  "Caroline Cochran",
+  "Matt Cohler",
+  "Scott Cook",
+  "Tyler Cowen",
+  "Ted Cruz",
+  "Adam D’Angelo",
+  "Mitch Daniels",
+  "Dan Driscoll",
+  "Charles Duhigg",
+  "Steve Ells",
+  "Tim Ferriss",
+  "Marcos Galperin",
+  "Atul Gawande",
+  "Tom Goldstein",
+  "Joseph Gordon-Levitt",
+  "Adam Grant",
+  "Severin Hacker",
+  "Jonathan Haidt",
+  "Peggy Hamburg",
+  "Sam Harris",
+  "Jim Himes",
+  "Auren Hoffman",
+  "Reid Hoffman",
+  "Rob Hur",
+  "Bob Jain",
+  "Bryan Johnson",
+  "Kaja Kallas",
+  "Gaurav Kapadia",
+  "Karen Karniol-Tambour",
+  "Garry Kasparov",
+  "Neal Katyal",
+  "Shahid Khaqan Abbasi",
+  "Ezra Klein",
+  "Tarō Kōno",
+  "Henry Kravis",
+  "Jared Kushner",
+  "Jason Kwon",
+  "Leonard Leo",
+  "Jon Levin",
+  "Howie Liu",
+  "Joe Lonsdale",
+  "Micky Malka",
+  "Stan McChrystal",
+  "Neal Mohan",
+  "Lisa Monaco",
+  "Wes Moore",
+  "Elon Musk",
+  "Demet Mutlu",
+  "Vas Narasimhan",
+  "Grover Norquist",
+  "Mike Novogratz",
+  "Jim O’Neill",
+  "Chamath Palihapitiya",
+  "Benj Pasek",
+  "Daniel Pink",
+  "Steven Pinker",
+  "Jared Polis",
+  "Jonathan Ross",
+  "Robert Rubin",
+  "Gretchen Rubin",
+  "Sheikh Nawaf Saud Nasir Al-Sabah",
+  "Will Scharf",
+  "Mario Schlosser",
+  "Eric Schmidt",
+  "Dan Schulman",
+  "Drew Scott",
+  "Kim Scott",
+  "Pete Shadbolt",
+  "Ali Siddiqui",
+  "Barry Silbert",
+  "Anne-Marie Slaughter",
+  "Charlie Songhurst",
+  "Jens Spahn",
+  "Scott Stephenson",
+  "Barry Sternlicht",
+  "Bret Stephens",
+  "Lawrence Summers",
+  "Astro Teller",
+  "Peter Thiel",
+  "Nick Thompson",
+  "John Townsend",
+  "Tom Tugendhat",
+  "Tim Urban",
+  "Rick Warren",
+  "Strauss Zelnick",
+  "Shivon Zilis",
+] as const;
+
+export const newlySurfaced = [
+  {
+    name: "Alexus Grynkewich",
+    status: "2026 registrant",
+    note: "Records reportedly show attendance since 2021.",
+  },
+  {
+    name: "Randy Kroszner",
+    status: "2026 registrant",
+    note: "Former Federal Reserve governor.",
+  },
+  {
+    name: "Hallie Hoffman",
+    status: "2026 registrant",
+    note: "Former DEA general counsel and acting chief of staff.",
+  },
+  {
+    name: "Jonathan Greenblatt",
+    status: "2026 registrant",
+    note: "CEO, Anti-Defamation League.",
+  },
+  {
+    name: "Peter Goettler",
+    status: "2026 registrant",
+    note: "President, Cato Institute.",
+  },
+  {
+    name: "Ryan Stowers",
+    status: "2026 registrant",
+    note: "Executive director, Charles Koch Foundation.",
+  },
+  {
+    name: "Roger Myerson",
+    status: "2026 registrant",
+    note: "Nobel economist; also present in older Dialog records.",
+  },
+  {
+    name: "Tom Lue",
+    status: "2026 registrant",
+    note: "Google DeepMind global-affairs executive.",
+  },
+  {
+    name: "Souad Mekhennet",
+    status: "2026 organizer / registrant",
+    note: "Journalist and author.",
+  },
+  {
+    name: "Josh Brolin",
+    status: "prospect / first-timer",
+    note: "Current dossier reportedly records no prior retreats.",
+  },
+  {
+    name: "Reihan Salam",
+    status: "current dossier",
+    note: "President, Manhattan Institute.",
+  },
+  {
+    name: "Shmuel Abramzon",
+    status: "2026 participant profile",
+    note: "Chief economist, Israeli Ministry of Finance.",
+  },
+  {
+    name: "Lisa Gevelber",
+    status: "active member",
+    note: "The strongest explicit newly public membership label.",
+  },
+  {
+    name: "Isaac Lee",
+    status: "current leaked material",
+    note: "Media executive.",
+  },
+  {
+    name: "Eva Price",
+    status: "current leaked material",
+    note: "Theater producer.",
+  },
+  {
+    name: "Teresa Hsiao",
+    status: "current dossier",
+    note: "Writer and producer; reportedly assigned an internal grade.",
+  },
+  {
+    name: "Zach Shields",
+    status: "current leaked material",
+    note: "Writer and producer.",
+  },
+] as const;
